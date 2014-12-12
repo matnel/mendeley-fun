@@ -1,0 +1,41 @@
+import os
+import yaml
+
+from mendeley import Mendeley
+from mendeley.session import MendeleySession
+
+
+## load configs from file
+conf = open('config.yml', 'r+w')
+config = yaml.load( conf )
+
+mendeley = Mendeley(config['clientId'], config['clientSecret'], config['path'] )
+
+## interactive OAuth flow
+if 'token' not in config:
+  auth = mendeley.start_authorization_code_flow()
+  state = auth.state
+  auth = mendeley.start_authorization_code_flow( state = state )
+  print auth.get_login_url()
+
+  ## auth = mendeley.start_implicit_grant_flow()
+  # After logging in, the user will be redirected to a URL, auth_response.
+  session = auth.authenticate( raw_input() )
+
+  print session.token
+  config['token'] = session.token
+
+  ## clean file
+  conf.write('')
+  yaml.dump( config, conf, default_flow_style=False )
+  print 'New infos stored'
+
+## update access tokens
+
+## use new access token
+session = MendeleySession( mendeley, config['token'] )
+
+recent = session.documents.list( page_size = 20, sort = 'created', order = 'desc' )
+
+for publication in recent.items:
+   print publication.title
