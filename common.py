@@ -49,4 +49,6 @@ def to_dict( publication ):
 
     data['authors'] = map( lambda person: { 'forename' : person.first_name , 'surname' : person.last_name } , publication.authors )
 
+    data['tags'] = publication.tags or []
+
     return data
