@@ -4,7 +4,7 @@ import json
 
 session = mendeley()
 
-recent = session.documents.list( page_size = 20, sort = 'created', order = 'desc' )
+recent = session.documents.list( page_size = 20, sort = 'created', order = 'desc', view = 'all' )
 
 recent = map( lambda publication: to_dict( publication ), recent.items )
 
