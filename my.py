@@ -13,6 +13,9 @@ for publication in everything:
     if publication.authored and not publication.hidden:
         mine.append( publication )
 
+## sort by publication year
+mine.sort( key = lambda publication: publication.year )
+
 mine = map( lambda publication: to_dict( publication ), mine )
 
 ## transfer JUFO tags to something else
