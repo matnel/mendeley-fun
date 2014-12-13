@@ -14,7 +14,7 @@ for publication in everything:
         mine.append( publication )
 
 ## sort by publication year
-mine.sort( key = lambda publication: publication.year )
+mine.sort( key = lambda publication: publication.year, reverse=True )
 
 mine = map( lambda publication: to_dict( publication ), mine )
 
