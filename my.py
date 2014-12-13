@@ -44,5 +44,5 @@ for publication in mine:
         tags[ tag ].append( publication )
 
 out = open('/var/www/main/data/my.json', 'w')
-out.write( json.dumps( recent ) )
+out.write( json.dumps( tags ) )
 out.close()
