@@ -6,7 +6,7 @@ session = mendeley()
 
 starred = []
 
-everything = session.documents.iter( page_size = 500, view = 'client' )
+everything = session.documents.iter( page_size = 500, view = 'client', sort = 'created', order = 'asc' )
 
 for publication in everything:
 
