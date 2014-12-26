@@ -30,6 +30,18 @@ for publication in mine:
 
     publication['jufo'] = jufo
 
+## remove OKM classifications
+for publication in mine:
+
+    for i in 'abcdefghABCDEFGH':
+        for j in range(0, 5):
+            j = str(j)
+
+            tag = i+j
+
+            if tag in publication['tags']:
+                publication['tags'].remove( tag )
+
 ## sort by tags
 
 tags = {}
