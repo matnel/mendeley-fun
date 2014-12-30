@@ -34,7 +34,7 @@ for publication in mine:
 for publication in mine:
 
     for i in 'abcdefghABCDEFGH':
-        for j in range(0, 5):
+        for j in range(0, 6):
             j = str(j)
 
             tag = i+j
